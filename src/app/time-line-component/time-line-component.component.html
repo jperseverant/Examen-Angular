@@ -1,0 +1,80 @@
+<div class="main-content ">
+
+  <div class="post-container shadow" *ngFor="let item of listPublication;let i " >
+    <div class="post-row">
+      <div class="user-profile">
+        <img src="../../assets/profile-pic.png">
+        <div>
+          <p>{{item.pseudo}}</p>
+          <span>{{item.date}}</span>
+        </div>
+      </div>
+      <a href="#">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+
+    <div>
+      <p class="post-text">Suivez <span>@{{item.pseudo}}</span> {{item.desciptions}}.
+        <a href="#">#letstrythis</a>
+        <a href="#">#youtube</a>
+      </p>
+      <img src="../../assets/feed-image-1.png" class="post-img">
+    </div>
+
+    <div *ngIf="view">
+      <span style="font-size: 12px;">Commentaire recent</span>
+      <div style="height: 200px;overflow-y: scroll">
+        <div class="card mb-2" *ngFor="let item of commentaireUtilisateur;let j">
+          <div class="m-3 card-body border-5">
+            <p>{{item.texte}}</p>
+            <div class="activity-icons" >
+
+              <div *ngIf="img1==true" (click)="aimerCommentaire(j)">
+                <img src="../../assets/like-blue.png"  >
+                <div>{{item.aime}}</div>
+              </div>
+              <div *ngIf="img1==false" (click)="aimerCommentaire(j)">
+                <img src="../../assets/like.png">
+                <div>{{item.aime}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="activity-icons" >
+
+        <div *ngIf="img==true" (click)="aimerPublication(i)">
+          <img src="../../assets/like-blue.png">
+          <div>{{item.nbreJaime}}</div>
+        </div>
+        <div *ngIf="img==false" (click)="aimerPublication(i)">
+          <img src="../../assets/like.png">
+          <div>{{item.nbreJaime}}</div>
+        </div>
+
+        <div (click)="ecrireCommentaire()">
+          <img src="../../assets/comments.png">
+          19
+        </div>
+        <div>
+          <img src="../../assets/share.png">
+          3
+        </div>
+      </div>
+
+      <div class="post-profile-icon">
+        <img src="../../assets/profile-pic.png">
+        <i class="fas fa fa-caret-down"></i>
+      </div>
+    </div>
+
+    <div *ngIf="commentaire==true">
+      <input style="width: 85%;border-radius: 8px;border: 1px solid #f2f2f2f2;padding: 10px" type="text" placeholder="Taper votre commentaire" [(ngModel)]="commentaireUtilisateurValeur" (focus)="view=true" >
+      <span (click)="publierCommentaire()" style="padding: 10px ;border-radius: 8px;border: 1px solid #f2f2f2f2;margin-left: 10px"><i style="color:blue" class="fa fa-send"></i></span>
+    </div>
+  </div>
+</div>
